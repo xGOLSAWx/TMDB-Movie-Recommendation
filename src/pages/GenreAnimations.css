@@ -1,0 +1,70 @@
+.genre-button {
+  padding: 1rem 2rem;
+  background: #1f1f1f;
+  color: white;
+  font-weight: bold;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.genre-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #fff;
+}
+
+.glowy-title {
+  text-shadow: 0 0 5px #fff, 0 0 10px #ffe400, 0 0 20px #ffdd00;
+}
+
+.genre-container {
+  min-height: 100vh;
+  padding: 2rem;
+  transition: all 1s ease;
+}
+
+/* Transition Effects */
+.horror-transition {
+  background-color: #200000 !important;
+  animation: bloodFlow 1.5s ease-in-out;
+}
+@keyframes bloodFlow {
+  0% { background-color: #000; }
+  50% { background-color: #500000; }
+  100% { background-color: #200000; }
+}
+
+.action-transition {
+  animation: explodeEffect 1.5s ease-in-out;
+}
+@keyframes explodeEffect {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1); }
+}
+
+.comedy-transition {
+  animation: bounceEffect 1.5s ease-in-out;
+}
+@keyframes bounceEffect {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.fantasy-transition {
+  animation: sparkleFade 1.5s ease-in-out;
+}
+@keyframes sparkleFade {
+  0% { background-color: #222; }
+  50% { background-color: #663399; }
+  100% { background-color: #222; }
+}
+
+.scifi-transition {
+  animation: glitchEffect 1.5s ease-in-out;
+}
+@keyframes glitchEffect {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(3px, -2px); }
+  50% { transform: translate(-3px, 2px); }
+  75% { transform: translate(2px, -1px); }
+}

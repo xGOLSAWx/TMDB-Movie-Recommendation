@@ -1,0 +1,117 @@
+.indian-movies-container-hotstar {
+  padding: 20px;
+  background-color: #121212;
+  color: white;
+}
+
+.genre-section {
+  margin-bottom: 40px;
+}
+
+.movies-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #ffbf00 transparent;
+}
+
+.movies-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.movies-carousel::-webkit-scrollbar-thumb {
+  background: #ffbf00;
+  border-radius: 4px;
+}
+
+.movie-card-hotstar {
+  min-width: 180px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #1e1e1e;
+  box-shadow: 0 0 8px rgba(255, 191, 0, 0.7);
+  outline: none;
+  transition: transform 0.3s ease;
+  height: 300px; /* fixed height for consistent card size */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.movie-card-hotstar:focus,
+.movie-card-hotstar:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.trailer-iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.77%; /* 16:9 video in vertical crop style, wider to fill height */
+  height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  pointer-events: none;
+  border: none;
+  border-radius: 8px;
+}
+
+.movie-poster-hotstar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+  z-index: 0;
+  position: relative;
+}
+
+.movie-info-hotstar {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffbf00;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0 0 8px 8px;
+  user-select: none;
+}
+
+.movie-title-hotstar {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+
+.movie-rating-hotstar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+.star-icon-hotstar {
+  color: #ffbf00;
+}
