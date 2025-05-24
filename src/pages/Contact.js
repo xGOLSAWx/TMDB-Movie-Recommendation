@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebase'; // adjust path if needed
 
 const ContactPage = () => {
   const navigate = useNavigate();
@@ -21,17 +23,22 @@ const ContactPage = () => {
     setFormData({ ...formData, rating: rate });
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
-    const existingReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-    const updatedReviews = [...existingReviews, formData];
-    localStorage.setItem('reviews', JSON.stringify(updatedReviews));
-
-    setSubmitting(false);
-    navigate('/reviews');
+    try {
+      await addDoc(collection(db, 'reviews'), formData);
+      navigate('/reviews');
+    } catch (error) {
+      console.error('Error adding review: ', error);
+      alert('Failed to submit review. Try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
+
 
   return (
     <div className="bg-gradient-to-b from-gray-800 to-gray-900 text-white py-10 px-4 min-h-screen flex justify-center">

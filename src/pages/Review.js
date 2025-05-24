@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase'; // Make sure this path is correct based on your setup
 
 const ReviewPage = () => {
   const [reviews, setReviews] = useState([]);
@@ -12,14 +14,23 @@ const ReviewPage = () => {
   const adminPassword = process.env.REACT_APP_ADMIN_PASSWORD;
 
   useEffect(() => {
-    const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-    setReviews(savedReviews);
+    const fetchReviews = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'reviews'));
+        const reviewsData = querySnapshot.docs.map(doc => doc.data());
+        setReviews(reviewsData);
+      } catch (err) {
+        console.error('Error fetching reviews:', err);
+      }
+    };
+
+    fetchReviews();
   }, []);
 
   const deleteReview = (indexToDelete) => {
     const updatedReviews = reviews.filter((_, index) => index !== indexToDelete);
     setReviews(updatedReviews);
-    localStorage.setItem('reviews', JSON.stringify(updatedReviews));
+    // Optional: Remove from Firestore if needed
   };
 
   const maskEmail = (email) => {
@@ -30,7 +41,7 @@ const ReviewPage = () => {
 
   const maskPhone = (phone) => {
     if (!phone) return '';
-    return phone.replace(/\d(?=\d{2})/g, '*'); // mask all but last 2 digits
+    return phone.replace(/\d(?=\d{2})/g, '*');
   };
 
   const handleLogin = () => {
@@ -113,7 +124,6 @@ const ReviewPage = () => {
         </div>
       )}
 
-      {/* Login Modal */}
       {showLogin && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-8 w-full max-w-sm text-black shadow-xl">
